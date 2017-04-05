@@ -21,11 +21,8 @@ if(getEnv() === 'development') {
   app.use(require('webpack-hot-middleware')(compiler))
 }
 
-
 app.use(express.static(__dirname + '/public/dist/'));
 app.use(express.static(__dirname + '/src/browser/'));
-
-
 
 /* GET home page. */
 app.get('*', function(req, res, next) {
