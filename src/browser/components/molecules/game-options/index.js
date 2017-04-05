@@ -26,7 +26,7 @@ export default class GameOptions extends Component {
         <h4>Select your options</h4>
         <form className="uk-form-horizontal" onSubmit={this.handleSubmit}>
           <fieldset className="uk-fieldset">
-            <SelectTag options={levels} label="Level:" onChange={this.handleChange.bind(this, 'level')} />
+            <SelectTag options={levels} label="Difficulty!!:" onChange={this.handleChange.bind(this, 'level')} />
             <SelectTag options={tags} label="Tag:" onChange={this.handleChange.bind(this, 'tag')} />
           </fieldset>
           <button className="uk-button uk-button-primary" >Submit</button>
