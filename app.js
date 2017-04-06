@@ -36,6 +36,11 @@ app.get('*', function(req, res, next) {
 })
 
 
+/* GET home page. */
+app.get('*', function(req, res, next) {
+  res.sendFile(path.join(__dirname, 'src/browser/index.html'))
+})
+
 // Heroku bydefault set an ENV variable called PORT=443
 //  so that you can access your site with https default port.
 // Falback port will be 8080; basically for pre-production test in localhost

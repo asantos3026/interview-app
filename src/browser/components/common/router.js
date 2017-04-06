@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
-import { matchPath } from 'react-router'
 import Landing from '../../components/Pages/Landing/index'
 
 import GameOptions from '../../components/molecules/game-options/index'
