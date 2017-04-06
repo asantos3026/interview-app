@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import SelectTag from '../../atoms/select-tag/index'
 
 export default class GameOptions extends Component {
-  constructor() {
-    super()
-    this.state = {level: null, tag: null}
+  constructor(props) {
+    super(props)
+    this.state = {difficulty: this.props.parse.difficulty || null, topic: this.props.parse.topic || null}
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -18,16 +18,17 @@ export default class GameOptions extends Component {
   }
 
   render() {
-    const tags = this.props.tags || []
-    const levels = this.props.levels || []
+    // this.setState({difficulty: this.props.parse.difficulty})
+    const topics = this.props.topics || []
+    const difficulty = this.props.difficulty || []
     return (
       <div>
         <h2>Time to mock interview</h2>
         <h4>Select your options</h4>
         <form className="uk-form-horizontal" onSubmit={this.handleSubmit}>
           <fieldset className="uk-fieldset">
-            <SelectTag options={levels} label="Difficulty!!:" onChange={this.handleChange.bind(this, 'level')} />
-            <SelectTag options={tags} label="Tag:" onChange={this.handleChange.bind(this, 'tag')} />
+            <SelectTag options={difficulty} label="Difficulty:" onChange={this.handleChange.bind(this, 'difficulty')} initValue={this.state.difficulty} />
+            <SelectTag options={topics} label="Topic:" onChange={this.handleChange.bind(this, 'topic')} initValue={this.state.topic} />
           </fieldset>
           <button className="uk-button uk-button-primary" >Submit</button>
         </form>
