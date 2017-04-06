@@ -18,17 +18,21 @@ export default class GameOptions extends Component {
   }
 
   render() {
-    // this.setState({difficulty: this.props.parse.difficulty})
     const topics = this.props.topics || []
     const difficulty = this.props.difficulty || []
+    const gameModes = this.props.gameModes || []
+
     return (
       <div>
         <h2>Time to mock interview</h2>
         <h4>Select your options</h4>
         <form className="uk-form-horizontal" onSubmit={this.handleSubmit}>
           <fieldset className="uk-fieldset">
+
             <SelectTag options={difficulty} label="Difficulty:" onChange={this.handleChange.bind(this, 'difficulty')} initValue={this.state.difficulty} />
             <SelectTag options={topics} label="Topic:" onChange={this.handleChange.bind(this, 'topic')} initValue={this.state.topic} />
+            <SelectTag options={gameModes} label="Game Mode:" onChange={this.handleChange.bind(this, 'gameMode')} />
+
           </fieldset>
           <button className="uk-button uk-button-primary" >Submit</button>
         </form>
