@@ -37,13 +37,24 @@ export default class Landing extends Component {
   }
 
   render(params) {
-    console.log('params')
+    // const { difficulty } = this.props.match.params.difficulty
+    // const { topic } = this.props.match.params.topic
+
+    // const { topic } = this.props.params.topic
+    // console.log('topic:', topic)
+    let difficulty, topic
+    if(this.props.match.params) {
+      {topic, difficulty} = this.props.match.params
+      console.log('topic:', topic, this.props.match.params, this.props.match.params.topic)
+      console.log('difficulty:', difficulty)
+    }
     const tagsAndLevels = findTagsAndLevels()
     const filteredQuestions = filterQuestions(questions, this.state.tag, this.state.level)
 
     const content = (this.state.level && this.state.tag) ?
           <Game questions={filteredQuestions}/>
-          : <GameOptions onSubmit={this.updateState} {...tagsAndLevels}/>
+          : <GameOptions onSubmit={this.updateState} {...tagsAndLevels}
+              topic={topic} difficulty={difficulty} />
 
     return (
       <div className="uk-container">

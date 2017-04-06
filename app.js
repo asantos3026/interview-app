@@ -32,6 +32,7 @@ app.use(express.static(__dirname + '/src/browser/main.js'));
 /* GET home page. */
 app.get('*', function(req, res, next) {
   res.sendFile(path.join(__dirname, 'src/browser/index.html'))
+  // console.log('this is our request object', req)
 })
 
 
