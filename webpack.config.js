@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 require('json-loader')
 require('css-loader')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: rootDir + '/src/browser/index.html',
   filename: 'index.html',
@@ -31,18 +31,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test:/\.js$/, include: `${rootDir}/src/browser`,
+        test: /\.js$/, include: `${rootDir}/src/browser`,
         loaders: ['react-hot-loader', 'babel-loader']
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+          fallback: 'style-loader',
+          use: 'css-loader'
         })
       },
-      {include:  /\.json$/, loaders: ['json-loader']}
-    ],
+      {include: /\.json$/, loaders: ['json-loader']}
+    ]
   },
   output: {
     filename: 'bundle.js',
@@ -51,7 +51,7 @@ module.exports = {
 
   plugins:
   [
-    new ExtractTextPlugin("styles.css"),
+    new ExtractTextPlugin('styles.css'),
     HTMLWebpackPluginConfig
   ]
 }

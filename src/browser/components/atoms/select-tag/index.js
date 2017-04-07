@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 export default class SelectTag extends Component {
-  render() {
+  render () {
     const options = this.props.options.map((option, index) => <option key={index} value={option}>{option}</option>)
     return (
       <div className="uk-margin">

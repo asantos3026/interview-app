@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import flex from 'react-uikit-flex'
 
 import Scorecard from '../../molecules/scorecard/index'
@@ -6,58 +6,60 @@ import questions from '../../../../../data/questions.json'
 require('../../../../../public/stylesheets/uikit.min.css')
 
 export default class Game extends Component {
-  constructor() {
+  constructor () {
     super()
-    this.state = {currentQuestionPosition: 0,
-                  answered: [],
-                  skipped: [],
-                  showAnswer: false}
+    this.state = {
+      'answered': [],
+'currentQuestionPosition': 0,
+      'showAnswer': false,
+      'skipped': []
+}
   }
 
-  incrementQuestionState(property) {
-    let questions = this.state[property]
+  incrementQuestionState (property) {
+    const questions = this.state[property]
     questions.push(this.state.currentQuestionPosition)
-    this.setState({[property]: questions,
-                   currentQuestionPosition: this.state.currentQuestionPosition + 1})
+    this.setState({
+      'currentQuestionPosition': this.state.currentQuestionPosition + 1,
+      [property]: questions
+})
   }
 
-
-  answerJSX(question) {
+  answerJSX (question) {
     if (this.state.showAnswer) {
-      return (<div className="uk-placeholder" id="answer-container">{question.answer}</div>)
+      return <div className="uk-placeholder" id="answer-container">{question.answer}</div>
     }
     return null
   }
 
-  toggleProperty(property) {
-    console.log('entered', property, !this.state[property])
-    this.setState({[property]: !this.state[property]})
+  toggleProperty (property) {
+    this.setState({ [property]: !this.state[property] })
   }
 
-  questionJSX(question) {
-      return (
-        <div>
-          <div className="uk-card-title uk-animation-fade uk-placeholder">{question.question}</div>
+  questionJSX (question) {
+    return (
+      <div>
+        <div className="uk-card-title uk-animation-fade uk-placeholder">{question.question}</div>
 
-          <div className="uk-flex uk-grid">
-            <div className="uk-flex-first">
-              <button className="uk-button uk-button-primary"
-                      onClick={this.incrementQuestionState.bind(this, 'answered')}>Correct</button>
-            </div>
-            <div className="uk-flex">
-              <button className="uk-button uk-button-danger"
-                      onClick={this.incrementQuestionState.bind(this, 'skipped')}>Skip</button>
-            </div>
-            <div className="uk-flex">
-              <button className="uk-button-secondary uk-button" onClick={this.toggleProperty.bind(this, 'showAnswer')}>Show Answer</button>
-            </div>
+        <div className="uk-flex uk-grid">
+          <div className="uk-flex-first">
+            <button className="uk-button uk-button-primary"
+              onClick={this.incrementQuestionState.bind(this, 'answered')}>Correct</button>
           </div>
-          {this.answerJSX(question)}
+          <div className="uk-flex">
+            <button className="uk-button uk-button-danger"
+              onClick={this.incrementQuestionState.bind(this, 'skipped')}>Skip</button>
+          </div>
+          <div className="uk-flex">
+            <button className="uk-button-secondary uk-button" onClick={this.toggleProperty.bind(this, 'showAnswer')}>Show Answer</button>
+          </div>
         </div>
-      )
+        {this.answerJSX(question)}
+      </div>
+    )
   }
 
-  allQuestionsCompletedJSX() {
+  allQuestionsCompletedJSX () {
     return (
       <div>
         <button className="uk-button-secondary uk-button uk-width-1-1">
@@ -67,15 +69,13 @@ export default class Game extends Component {
     )
   }
 
-
-  render() {
-    const questions = this.props.questions
-    const {currentQuestionPosition} = this.state
+  render () {
+    const { questions } = this.props.questions
+    const { currentQuestionPosition } = this.state
     const question = questions[currentQuestionPosition]
 
     let content
-
-    if(currentQuestionPosition === questions.length) {
+    if (currentQuestionPosition === questions.length) {
       content = this.allQuestionsCompletedJSX()
     } else {
       content = this.questionJSX(question)
@@ -84,11 +84,11 @@ export default class Game extends Component {
     return (
       <div>
         <Scorecard answered={this.state.answered} skipped={this.state.skipped} questions={this.props.questions} />
-        <progress className="uk-progress" value={currentQuestionPosition + 1} max={questions.length}></progress>
+        <progress className="uk-progress" value={currentQuestionPosition + 1} max={questions.length} />
         {content}
 
         <div className="uk-container-center uk-margin uk-width-1-1">
-          <textarea className="uk-textarea" placeholder="Submit your interview notes here..."></textarea>
+          <textarea className="uk-textarea" placeholder="Submit your interview notes here..." />
         </div>
         <button className="uk-button uk-button-default" data-uk-toggle="target: #my-id" type="button">HINT!</button>
         <p id="my-id" hidden>Silly</p>

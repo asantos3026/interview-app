@@ -1,27 +1,29 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import SelectTag from '../../atoms/select-tag/index'
 
 export default class GameOptions extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
-    this.state = {difficulty: this.props.parse.difficulty || null, topic: this.props.parse.topic || null}
+    this.state = {
+ 'difficulty': this.props.parse.difficulty || null,
+'topic': this.props.parse.topic || null
+}
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(property, event) {
-    this.setState({[property]: event.target.value});
+  handleChange (property, event) {
+    this.setState({ [property]: event.target.value })
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit (event) {
+    event.preventDefault()
     this.props.onSubmit(this.state)
   }
 
-  render() {
+  render () {
     const topics = this.props.topics || []
     const difficulty = this.props.difficulty || []
     const gameModes = this.props.gameModes || []
-
     return (
       <div>
         <h2>Time to mock interview</h2>
